@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   // Track which menu item is active
@@ -8,6 +9,7 @@ export default function Sidebar() {
     <aside className="w-1/5 bg-[#0E1A2B] min-h-[calc(100vh-4rem)] py-6 px-4">
       <nav>
         <ul className="space-y-2">
+
           {/* Explore */}
           <li
             onClick={() => setActive('Explore')}
@@ -17,9 +19,10 @@ export default function Sidebar() {
                 : 'text-gray-300 hover:bg-[#1D2949]'
             }`}
           >
-            
-            <span className="mr-3 text-xl">🔭</span>
-            <span className="text-lg">Explore</span>
+            <Link to="/" className="flex items-center w-full">
+              <span className="mr-3 text-xl">🔭</span>
+              <span className="text-lg">Explore</span>
+            </Link>
           </li>
 
           {/* Solar System */}
@@ -31,8 +34,10 @@ export default function Sidebar() {
                 : 'text-gray-300 hover:bg-[#1D2949]'
             }`}
           >
-            <span className="mr-3 text-xl">☀️</span>
-            <span className="text-lg">Solar System</span>
+            <Link to="/solar-system" className="flex items-center w-full">
+              <span className="mr-3 text-xl">☀️</span>
+              <span className="text-lg">Solar System</span>
+            </Link>
           </li>
 
           {/* Space Missions */}
@@ -44,8 +49,10 @@ export default function Sidebar() {
                 : 'text-gray-300 hover:bg-[#1D2949]'
             }`}
           >
-            <span className="mr-3 text-xl">🚀</span>
-            <span className="text-lg">Space Missions</span>
+            <Link to="/space-missions" className="flex items-center w-full">
+              <span className="mr-3 text-xl">🚀</span>
+              <span className="text-lg">Space Missions</span>
+            </Link>
           </li>
 
           {/* Discoveries */}
@@ -57,8 +64,10 @@ export default function Sidebar() {
                 : 'text-gray-300 hover:bg-[#1D2949]'
             }`}
           >
-            <span className="mr-3 text-xl">💡</span>
-            <span className="text-lg">Discoveries</span>
+            <Link to="/discoveries" className="flex items-center w-full">
+              <span className="mr-3 text-xl">💡</span>
+              <span className="text-lg">Discoveries</span>
+            </Link>
           </li>
 
           {/* Achievements */}
@@ -70,8 +79,10 @@ export default function Sidebar() {
                 : 'text-gray-300 hover:bg-[#1D2949]'
             }`}
           >
-            <span className="mr-3 text-xl">🏆</span>
-            <span className="text-lg">Achievements</span>
+            <Link to="/achievements" className="flex items-center w-full">
+              <span className="mr-3 text-xl">🏆</span>
+              <span className="text-lg">Achievements</span>
+            </Link>
           </li>
 
           {/* Theories */}
@@ -83,8 +94,10 @@ export default function Sidebar() {
                 : 'text-gray-300 hover:bg-[#1D2949]'
             }`}
           >
-            <span className="mr-3 text-xl">📖</span>
-            <span className="text-lg">Theories</span>
+            <Link to="/theories" className="flex items-center w-full">
+              <span className="mr-3 text-xl">📖</span>
+              <span className="text-lg">Theories</span>
+            </Link>
           </li>
 
           {/* Scientists */}
@@ -96,8 +109,10 @@ export default function Sidebar() {
                 : 'text-gray-300 hover:bg-[#1D2949]'
             }`}
           >
-            <span className="mr-3 text-xl">👨‍🔬</span>
-            <span className="text-lg">Scientists</span>
+            <Link to="/scientists" className="flex items-center w-full">
+              <span className="mr-3 text-xl">👨‍🔬</span>
+              <span className="text-lg">Scientists</span>
+            </Link>
           </li>
 
           {/* Quiz */}
@@ -109,8 +124,10 @@ export default function Sidebar() {
                 : 'text-gray-300 hover:bg-[#1D2949]'
             }`}
           >
-            <span className="mr-3 text-xl">🧠</span>
-            <span className="text-lg">Quiz</span>
+            <Link to="/quiz" className="flex items-center w-full">
+              <span className="mr-3 text-xl">🧠</span>
+              <span className="text-lg">Quiz</span>
+            </Link>
           </li>
 
         </ul>
