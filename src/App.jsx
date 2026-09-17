@@ -1,6 +1,7 @@
 import { Topbar } from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import { Routes, Route } from "react-router-dom";
+import Facts from "./pages/Facts";
 
 function App() {
   return (
@@ -15,52 +16,54 @@ function App() {
         <main className="flex-1 overflow-y-auto">
           <Routes>
 
-            {/* Explore */}
-            <Route path="/" element={<div>Explore</div>} />
+  <Route path="/explore" element={<div>Explore</div>} />
 
-            {/* Solar System */}
-            <Route
-              path="/solar-system"
-              element={<div>Solar System</div>}
-            />
+  <Route
+    path="/solar-system"
+    element={<div>Solar System</div>}
+  />
 
-            {/* Space Missions */}
-            <Route
-              path="/space-missions"
-              element={<div>Space Missions</div>}
-            />
+  <Route
+    path="/space-missions"
+    element={<div>Space Missions</div>}
+  />
 
-            {/* Discoveries */}
-            <Route
-              path="/discoveries"
-              element={<div>Discoveries</div>}
-            />
+  <Route
+    path="/discoveries"
+    element={<div>Discoveries</div>}
+  />
 
-            {/* Achievements */}
-            <Route
-              path="/achievements"
-              element={<div>Achievements</div>}
-            />
+  <Route
+    path="/achievements"
+    element={<div>Achievements</div>}
+  />
 
-            {/* Theories */}
-            <Route
-              path="/theories"
-              element={<div>Theories</div>}
-            />
+  <Route
+    path="/theories"
+    element={<div>Theories</div>}
+  />
 
-            {/* Scientists */}
-            <Route
-              path="/scientists"
-              element={<div>Scientists</div>}
-            />
+  <Route
+    path="/scientists"
+    element={<div>Scientists</div>}
+  />
 
-            {/* Quiz */}
-            <Route
-              path="/quiz"
-              element={<div>Quiz</div>}
-            />
+  <Route
+    path="/quiz"
+    element={<div>Quiz</div>}
+  />
 
-          </Routes>
+  <Route
+  path="/facts"
+  element={<Facts />}
+/>
+
+<Route
+    path="/Galary"
+    element={<div>Galary</div>}
+  />
+
+</Routes>
         </main>
 
       </div>
