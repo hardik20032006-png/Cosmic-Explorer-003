@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import facts from "../factsData";
+import React, { useState, useEffect } from "react";
+import facts from "../../factsData";
 
 export default function FactsCard() {
   const getRandomFact = () => {
@@ -12,6 +12,21 @@ export default function FactsCard() {
   const showRandomFact = () => {
     setCurrentFact(getRandomFact());
   };
+
+  // Keyboard arrow support
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        showRandomFact();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <div className="w-full h-full flex items-center justify-center px-10 -translate-y-6">
