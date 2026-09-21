@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import facts from "../../factsData";
 
 export default function FactsCard() {
@@ -7,16 +7,59 @@ export default function FactsCard() {
     return facts[randomIndex];
   };
 
-  const [currentFact, setCurrentFact] = useState(getRandomFact);
+  // Complete journey of facts
+  const [factHistory, setFactHistory] = useState([getRandomFact()]);
 
+  // Where we currently are in the journey
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Current fact
+  const currentFact = factHistory[currentIndex];
+
+  // Refs so handlers always see the LATEST values
+  // without needing them in the effect's dependency array
+  const factHistoryRef = useRef(factHistory);
+  const currentIndexRef = useRef(currentIndex);
+
+  useEffect(() => {
+    factHistoryRef.current = factHistory;
+  }, [factHistory]);
+
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  }, [currentIndex]);
+
+  // RIGHT → move forward or create a new random fact
   const showRandomFact = () => {
-    setCurrentFact(getRandomFact());
+    const prevHistory = factHistoryRef.current;
+    const idx = currentIndexRef.current;
+
+    if (idx < prevHistory.length - 1) {
+      // Already have a "next" fact from before → just move forward
+      setCurrentIndex(idx + 1);
+    } else {
+      // We are at the end → create a new random fact
+      const newFact = getRandomFact();
+      setFactHistory([...prevHistory, newFact]);
+      setCurrentIndex(idx + 1);
+    }
   };
 
-  // Keyboard arrow support
+  // LEFT → go backward through history
+  const showPreviousFact = () => {
+    const idx = currentIndexRef.current;
+    if (idx === 0) return;
+    setCurrentIndex(idx - 1);
+  };
+
+  // Keyboard support — listener is attached ONCE, no churn on every keystroke
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      if (event.key === "ArrowLeft") {
+        showPreviousFact();
+      }
+
+      if (event.key === "ArrowRight") {
         showRandomFact();
       }
     };
@@ -36,7 +79,7 @@ export default function FactsCard() {
 
         {/* Left Arrow */}
         <button
-          onClick={showRandomFact}
+          onClick={showPreviousFact}
           className="
             absolute left-6
             w-18 h-18
