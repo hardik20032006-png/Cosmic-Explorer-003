@@ -2,6 +2,7 @@ import { Topbar } from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import { Routes, Route } from "react-router-dom";
 import Facts from "./pages/Facts";
+import Achievements from "./pages/Achievements";
 
 function App() {
   return (
@@ -34,9 +35,9 @@ function App() {
   />
 
   <Route
-    path="/achievements"
-    element={<div>Achievements</div>}
-  />
+  path="/achievements"
+  element={<Achievements />}
+/>
 
   <Route
     path="/theories"
