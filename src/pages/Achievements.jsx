@@ -3,7 +3,7 @@ import AchievementCard from "../components/components/AchievementCard";
 
 export default function Achievements() {
   return (
-    <div className="p-8">
+    <div className="px-8 pt-4 pb-8">
       <h1 className="text-3xl font-bold text-white mb-8">
         Space Achievements
       </h1>

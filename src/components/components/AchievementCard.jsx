@@ -2,10 +2,10 @@ import React from "react";
 
 export default function AchievementCard({ achievement }) {
   return (
-       <div className="bg-[#0E1A2B] border border-[#6142BF] rounded-2xl overflow-hidden shadow-lg hover:border-purple-400 transition flex flex-col h-full">
-      
+    <div className="bg-[#0E1A2B] border border-[#6142BF] rounded-2xl overflow-hidden shadow-lg hover:border-purple-400 transition flex flex-col h-full">
+
       {/* Image */}
-      <div className="h-48 bg-[#111827]">
+      <div className="h-48 bg-[#111827] mx-2 mt-2 rounded-xl overflow-hidden">
         <img
           src={achievement.image}
           alt={achievement.title}
@@ -13,37 +13,37 @@ export default function AchievementCard({ achievement }) {
         />
       </div>
 
-     {/* Content */}
-<div className="p-5 flex flex-col flex-1">
+      {/* Content */}
+      <div className="p-5 flex flex-col flex-1">
 
-  <h2 className="text-xl font-semibold text-white">
-    {achievement.title}
-  </h2>
+        <h2 className="text-xl font-semibold text-white">
+          {achievement.title}
+        </h2>
 
-  <p className="text-sm text-purple-300 mt-2">
-    {achievement.date}
-  </p>
+        <p className="text-sm text-purple-300 mt-1">
+          {achievement.date}
+        </p>
 
-  <p className="text-gray-300 mt-3 leading-relaxed">
-    {achievement.shortDescription}
-  </p>
+        <p className="text-gray-300 mt-2 leading-relaxed">
+          {achievement.shortDescription}
+        </p>
 
-  <button
-    className="
-      mt-auto
-      self-start
-      px-4 py-2
-      rounded-lg
-      bg-[#6142BF]
-      text-white
-      hover:bg-purple-500
-      transition
-    "
-  >
-    Know More
-  </button>
+        <button
+          className="
+            mt-auto
+            self-start
+            px-4 py-2
+            rounded-lg
+            bg-[#6142BF]
+            text-white
+            hover:bg-purple-500
+            transition
+          "
+        >
+          Know More
+        </button>
 
-</div>
+      </div>
     </div>
   );
 }
