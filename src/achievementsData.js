@@ -100,17 +100,6 @@ const achievements = [
 
   {
     id: 10,
-    title: "First Woman to Perform a Spacewalk",
-    date: "July 25, 1984",
-    shortDescription:
-      "Svetlana Savitskaya became the first woman to perform a spacewalk.",
-    image: "/images/svetlana-savitskaya.jpg",
-    description:
-      "Soviet cosmonaut Svetlana Savitskaya became the first woman to perform an extravehicular activity. She spent time outside the Salyut 7 space station testing techniques including welding in space.",
-  },
-
-  {
-    id: 11,
     title: "First American Woman in Space",
     date: "June 18, 1983",
     shortDescription:
@@ -121,7 +110,7 @@ const achievements = [
   },
 
   {
-    id: 12,
+    id: 11,
     title: "First African-American in Space",
     date: "August 30, 1983",
     shortDescription:
@@ -132,7 +121,29 @@ const achievements = [
   },
 
   {
+    id: 12,
+    title: "First On-Orbit Satellite Repair",
+    date: "April 6, 1984",
+    shortDescription:
+      "Astronauts successfully repaired a damaged satellite while working in orbit.",
+    image: "/images/satellite-repair.jpg",
+    description:
+      "Astronauts performed the first successful repair of a satellite while in orbit, replacing instruments on the Solar Maximum Mission spacecraft. The achievement demonstrated that complex spacecraft could be serviced instead of simply abandoned.",
+  },
+
+  {
     id: 13,
+    title: "First Woman to Perform a Spacewalk",
+    date: "July 25, 1984",
+    shortDescription:
+      "Svetlana Savitskaya became the first woman to perform a spacewalk.",
+    image: "/images/svetlana-savitskaya.jpg",
+    description:
+      "Soviet cosmonaut Svetlana Savitskaya became the first woman to perform an extravehicular activity. She spent time outside the Salyut 7 space station testing techniques including welding in space.",
+  },
+
+  {
+    id: 14,
     title: "First American Woman Spacewalker",
     date: "October 11, 1984",
     shortDescription:
@@ -143,7 +154,7 @@ const achievements = [
   },
 
   {
-    id: 14,
+    id: 15,
     title: "First Asian-American in Space",
     date: "January 24, 1985",
     shortDescription:
@@ -151,17 +162,6 @@ const achievements = [
     image: "/images/ellison-onizuka.jpg",
     description:
       "Ellison Onizuka became the first Asian-American to fly in space. He launched aboard Space Shuttle Discovery in 1985 as a mission specialist.",
-  },
-
-  {
-    id: 15,
-    title: "First On-Orbit Satellite Repair",
-    date: "April 6, 1984",
-    shortDescription:
-      "Astronauts successfully repaired a damaged satellite while working in orbit.",
-    image: "/images/satellite-repair.jpg",
-    description:
-      "Astronauts performed the first successful repair of a satellite while in orbit, replacing instruments on the Solar Maximum Mission spacecraft. The achievement demonstrated that complex spacecraft could be serviced instead of simply abandoned.",
   },
 
   {
@@ -188,13 +188,13 @@ const achievements = [
 
   {
     id: 18,
-    title: "First Evidence of Planets Around a Sun-Like Star",
-    date: "October 6, 1995",
+    title: "First Ion-Propulsion Deep-Space Demonstration",
+    date: "November 24, 1998",
     shortDescription:
-      "51 Pegasi b became the first confirmed exoplanet discovered orbiting a Sun-like star.",
-    image: "/images/51-pegasi-b.jpg",
+      "Ion propulsion was demonstrated as the primary propulsion system for a deep-space spacecraft.",
+    image: "/images/ion-propulsion.jpg",
     description:
-      "Astronomers Michel Mayor and Didier Queloz announced the discovery of 51 Pegasi b, the first exoplanet identified orbiting a normal Sun-like star. The discovery transformed the search for planets beyond our Solar System.",
+      "NASA's Deep Space 1 demonstrated the use of ion propulsion as its primary propulsion system in deep space. The technology uses electrically accelerated ions to produce a very small but highly efficient thrust over long periods.",
   },
 
   {
@@ -210,39 +210,6 @@ const achievements = [
 
   {
     id: 20,
-    title: "First Direct Evidence of Planet Formation",
-    date: "April 26, 2001",
-    shortDescription:
-      "Astronomers obtained direct visual evidence of disks where planets are forming around young stars.",
-    image: "/images/planet-formation.jpg",
-    description:
-      "Hubble observations provided some of the first direct visual evidence of protoplanetary disks around young stars. These disks contain the material from which planets can form.",
-  },
-
-  {
-    id: 21,
-    title: "First Exoplanet Atmosphere Detected",
-    date: "November 27, 2001",
-    shortDescription:
-      "Astronomers made the first direct measurement of an atmosphere belonging to a planet outside our Solar System.",
-    image: "/images/exoplanet-atmosphere.jpg",
-    description:
-      "Using the Hubble Space Telescope, astronomers detected sodium in the atmosphere of the exoplanet HD 209458 b. It was the first direct measurement of an exoplanet's atmosphere.",
-  },
-
-  {
-    id: 22,
-    title: "First Evidence of Dark Energy",
-    date: "1998",
-    shortDescription:
-      "Observations revealed that the expansion of the universe is accelerating rather than slowing down.",
-    image: "/images/dark-energy.jpg",
-    description:
-      "Astronomers studying distant Type Ia supernovae found evidence that the expansion of the universe is accelerating. The unknown phenomenon responsible for this acceleration became known as dark energy.",
-  },
-
-  {
-    id: 23,
     title: "First Food Grown and Eaten in Space",
     date: "August 10, 2015",
     shortDescription:
@@ -253,40 +220,7 @@ const achievements = [
   },
 
   {
-    id: 24,
-    title: "First Gravitational Waves Detected",
-    date: "September 14, 2015",
-    shortDescription:
-      "LIGO directly detected ripples in spacetime produced by a cosmic collision.",
-    image: "/images/gravitational-waves.jpg",
-    description:
-      "The LIGO detectors recorded gravitational waves produced by the merger of two black holes. The detection provided the first direct observation of gravitational waves and opened a new way to study the universe.",
-  },
-
-  {
-    id: 25,
-    title: "First Black Hole Image",
-    date: "April 10, 2019",
-    shortDescription:
-      "Scientists revealed the first image showing the shadow of a black hole.",
-    image: "/images/first-black-hole.jpg",
-    description:
-      "The Event Horizon Telescope collaboration produced the first image of a black hole's shadow. The target was the supermassive black hole at the center of the galaxy Messier 87.",
-  },
-
-  {
-    id: 26,
-    title: "First Seismic Activity Detected on Another Planet",
-    date: "April 6, 2019",
-    shortDescription:
-      "Scientists detected the first confirmed seismic event on a world beyond Earth.",
-    image: "/images/marsquake.jpg",
-    description:
-      "NASA's InSight mission detected seismic activity on Mars, providing the first direct evidence of marsquakes. These measurements allowed scientists to study the interior structure of another planet.",
-  },
-
-  {
-    id: 27,
+    id: 21,
     title: "First Powered Flight on Another Planet",
     date: "April 19, 2021",
     shortDescription:
@@ -297,18 +231,7 @@ const achievements = [
   },
 
   {
-    id: 28,
-    title: "First Known Interstellar Object",
-    date: "October 19, 2017",
-    shortDescription:
-      "Astronomers discovered the first known object from another star system passing through ours.",
-    image: "/images/oumuamua.jpg",
-    description:
-      "Astronomers discovered 1I/2017 U1, later named 'Oumuamua. Its trajectory showed that it originated outside our Solar System, making it the first known interstellar object observed passing through our planetary system.",
-  },
-
-  {
-    id: 29,
+    id: 22,
     title: "First U.S. Asteroid Sample Returned",
     date: "September 24, 2023",
     shortDescription:
@@ -316,17 +239,6 @@ const achievements = [
     image: "/images/asteroid-sample.jpg",
     description:
       "NASA's OSIRIS-REx returned a sample collected from asteroid Bennu to Earth. The capsule delivered rocks and dust that had remained largely untouched since the early Solar System.",
-  },
-
-  {
-    id: 30,
-    title: "First Ion-Propulsion Deep-Space Demonstration",
-    date: "November 24, 1998",
-    shortDescription:
-      "Ion propulsion was demonstrated as the primary propulsion system for a deep-space spacecraft.",
-    image: "/images/ion-propulsion.jpg",
-    description:
-      "NASA's Deep Space 1 demonstrated the use of ion propulsion as its primary propulsion system in deep space. The technology uses electrically accelerated ions to produce a very small but highly efficient thrust over long periods.",
   },
 ];
 
