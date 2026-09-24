@@ -5,7 +5,7 @@ const achievements = [
     date: "November 3, 1957",
     shortDescription:
       "Laika became the first animal to orbit Earth, proving that living organisms could survive an orbital flight.",
-    image: "/images/laika.jpg",
+    image: "https://res.cloudinary.com/aenetworks/image/upload/c_fill,ar_2,w_1080,h_540,g_auto/dpr_auto/f_auto/q_auto:eco/v1/what-was-the-first-animal-in-spaces-featured-photo?_a=BAVMn6E80",
     description:
       "Laika, a Soviet dog, became the first animal to orbit Earth aboard Sputnik 2. Her flight provided important biological data for the development of human spaceflight, although the spacecraft was not designed to return her safely.",
   },

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function AchievementCard({ achievement }) {
   return (
@@ -28,7 +29,9 @@ export default function AchievementCard({ achievement }) {
           {achievement.shortDescription}
         </p>
 
-        <button
+        {/* Know More */}
+        <Link
+          to={`/achievements/${encodeURIComponent(achievement.title)}`}
           className="
             mt-auto
             self-start
@@ -41,7 +44,7 @@ export default function AchievementCard({ achievement }) {
           "
         >
           Know More
-        </button>
+        </Link>
 
       </div>
     </div>
