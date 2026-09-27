@@ -4,6 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import Facts from "./pages/Facts";
 import Achievements from "./pages/Achievements";
 import AchievementDetails from "./pages/AchievementDetails";
+import Scientists from "./pages/Scientists";
+import ScientistDetails from "./pages/ScientistDetails";
 
 function App() {
   return (
@@ -50,9 +52,14 @@ function App() {
   />
 
   <Route
-    path="/scientists"
-    element={<div>Scientists</div>}
-  />
+  path="/scientists"
+  element={<Scientists />}
+/>
+
+<Route
+  path="/scientists/:name"
+  element={<ScientistDetails />}
+/>
 
   <Route
     path="/quiz"

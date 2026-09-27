@@ -43,7 +43,7 @@ export default function AchievementDetails() {
   }
 
   return (
-    <div className="p-6 md:p-8">
+    <div className="px-6 md:px-8 pt-2 pb-8">
 
       {/* Back button */}
       <Link
@@ -54,7 +54,7 @@ export default function AchievementDetails() {
           text-purple-300
           hover:text-white
           transition
-          mb-6
+          mb-4
         "
       >
         ← Back to Achievements
@@ -137,6 +137,29 @@ export default function AchievementDetails() {
 
             <div className="space-y-5">
 
+              {/* Achievement */}
+              <div>
+                <p className="text-sm text-purple-300">
+                  Achievement
+                </p>
+
+                <p className="text-white mt-1">
+                  {achievement.title}
+                </p>
+              </div>
+
+              {/* Short Description */}
+              <div>
+                <p className="text-sm text-purple-300">
+                  Short Description
+                </p>
+
+                <p className="text-gray-300 mt-1 leading-relaxed">
+                  {achievement.shortDescription}
+                </p>
+              </div>
+
+              {/* Date */}
               <div>
                 <p className="text-sm text-purple-300">
                   Date
@@ -147,13 +170,14 @@ export default function AchievementDetails() {
                 </p>
               </div>
 
+              {/* Country */}
               <div>
                 <p className="text-sm text-purple-300">
-                  Title
+                  Country
                 </p>
 
                 <p className="text-white mt-1">
-                  {achievement.title}
+                  {achievement.country}
                 </p>
               </div>
 
