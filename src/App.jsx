@@ -6,6 +6,12 @@ import Achievements from "./pages/Achievements";
 import AchievementDetails from "./pages/AchievementDetails";
 import Scientists from "./pages/Scientists";
 import ScientistDetails from "./pages/ScientistDetails";
+import Theories from "./pages/Theories";
+import TheoryDetails from "./pages/TheoryDetails";
+import SpaceMissions from "./pages/SpaceMissions";
+import SpaceMissionDetails from "./pages/SpaceMissionDetails";
+import Discoveries from "./pages/Discoveries";
+import DiscoveryDetails from "./pages/DiscoveryDetails";
 
 function App() {
   return (
@@ -28,14 +34,23 @@ function App() {
   />
 
   <Route
-    path="/space-missions"
-    element={<div>Space Missions</div>}
-  />
+  path="/space-missions"
+  element={<SpaceMissions />}
+/>
+<Route
+  path="/space-missions/:slug"
+  element={<SpaceMissionDetails />}
+/>
 
   <Route
-    path="/discoveries"
-    element={<div>Discoveries</div>}
-  />
+  path="/discoveries"
+  element={<Discoveries />}
+/>
+
+<Route
+  path="/discoveries/:slug"
+  element={<DiscoveryDetails />}
+/>
 
   <Route
   path="/achievements"
@@ -47,9 +62,14 @@ function App() {
   />
 
   <Route
-    path="/theories"
-    element={<div>Theories</div>}
-  />
+  path="/theories"
+  element={<Theories />}
+/>
+
+<Route
+  path="/theories/:slug"
+  element={<TheoryDetails />}
+/>
 
   <Route
   path="/scientists"
