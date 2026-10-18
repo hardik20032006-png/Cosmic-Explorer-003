@@ -1,3 +1,4 @@
+
 import scientists from "../scientistsData";
 import ScientistCard from "../components/components/ScientistCard";
 

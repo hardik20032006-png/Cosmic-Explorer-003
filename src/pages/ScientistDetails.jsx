@@ -1,22 +1,18 @@
+
 import { useParams, Link } from "react-router-dom";
 import scientists from "../scientistsData";
 
 export default function ScientistDetails() {
-
   const { name } = useParams();
 
-  const decodedName = decodeURIComponent(name);
-
   const scientist = scientists.find(
-    (item) => item.name === decodedName
+    (item) => item.name === name
   );
 
   if (!scientist) {
     return (
       <div className="min-h-full flex items-center justify-center p-8">
-
         <div className="text-center">
-
           <h1 className="text-3xl font-bold text-white">
             Scientist Not Found
           </h1>
@@ -27,22 +23,11 @@ export default function ScientistDetails() {
 
           <Link
             to="/scientists"
-            className="
-              inline-block
-              mt-6
-              px-5 py-2
-              rounded-lg
-              bg-[#6142BF]
-              text-white
-              hover:bg-purple-500
-              transition
-            "
+            className="inline-block mt-6 px-5 py-2 rounded-lg bg-[#6142BF] text-white hover:bg-purple-500 transition"
           >
             ← Back to Scientists
           </Link>
-
         </div>
-
       </div>
     );
   }
@@ -53,88 +38,38 @@ export default function ScientistDetails() {
       {/* Back button */}
       <Link
         to="/scientists"
-        className="
-          inline-flex
-          items-center
-          text-purple-300
-          hover:text-white
-          transition
-          mb-4
-        "
+        className="inline-flex items-center text-purple-300 hover:text-white transition mb-4"
       >
         ← Back to Scientists
       </Link>
 
       {/* Main detail card */}
-      <article
-        className="
-          bg-[#0E1A2B]
-          border border-[#6142BF]
-          rounded-2xl
-          shadow-2xl
-          overflow-hidden
-        "
-      >
+      <article className="bg-[#0E1A2B] border border-[#6142BF] rounded-2xl shadow-2xl overflow-hidden">
 
         {/* Header */}
         <div className="p-6 md:p-8">
-
-          <h1
-            className="
-              text-3xl
-              md:text-4xl
-              font-semibold
-              text-white
-            "
-          >
+          <h1 className="text-3xl md:text-4xl font-semibold text-white">
             {scientist.name}
           </h1>
-
         </div>
 
-        {/* Image + Information */}
-        <div
-          className="
-            grid
-            grid-cols-1
-            lg:grid-cols-[1.5fr_1fr]
-            gap-8
-            px-6
-            md:px-8
-            pb-8
-          "
-        >
+        {/* Image and scientist information */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8 px-6 md:px-8 pb-8">
 
           {/* Image */}
-          <div
-            className="
-              rounded-xl
-              overflow-hidden
-              bg-[#111827]
-              border border-[#1D2949]
-            "
-          >
+          <div className="rounded-xl overflow-hidden bg-[#111827] border border-[#1D2949]">
             <img
               src={scientist.image}
               alt={scientist.name}
-              className="
-                w-full
-                h-[300px]
-                md:h-[420px]
-                object-cover
-              "
+              className="w-full h-[300px] md:h-[420px] object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
             />
           </div>
 
-          {/* Information */}
-          <div
-            className="
-              bg-[#111827]
-              rounded-xl
-              border border-[#1D2949]
-              p-6
-            "
-          >
+          {/* Information panel */}
+          <div className="bg-[#111827] rounded-xl border border-[#1D2949] p-6">
 
             <h2 className="text-xl font-semibold text-white mb-5">
               Scientist Information
@@ -142,90 +77,48 @@ export default function ScientistDetails() {
 
             <div className="space-y-5">
 
-              {/* Name */}
               <div>
-                <p className="text-sm text-purple-300">
-                  Scientist
-                </p>
-
-                <p className="text-white mt-1">
-                  {scientist.name}
-                </p>
+                <p className="text-sm text-purple-300">Scientist</p>
+                <p className="text-white mt-1">{scientist.name}</p>
               </div>
 
-              {/* Country */}
               <div>
-                <p className="text-sm text-purple-300">
-                  Country
-                </p>
-
-                <p className="text-white mt-1">
-                  {scientist.country}
-                </p>
+                <p className="text-sm text-purple-300">Country</p>
+                <p className="text-white mt-1">{scientist.country}</p>
               </div>
 
-              {/* Born */}
               <div>
-                <p className="text-sm text-purple-300">
-                  Born
-                </p>
-
-                <p className="text-white mt-1">
-                  {scientist.born}
-                </p>
+                <p className="text-sm text-purple-300">Born</p>
+                <p className="text-white mt-1">{scientist.born}</p>
               </div>
 
-              {/* Died */}
               <div>
-                <p className="text-sm text-purple-300">
-                  Died
-                </p>
-
-                <p className="text-white mt-1">
-                  {scientist.died}
-                </p>
+                <p className="text-sm text-purple-300">Died</p>
+                <p className="text-white mt-1">{scientist.died}</p>
               </div>
 
             </div>
-
           </div>
-
         </div>
 
-        {/* Work */}
+        {/* Work and contributions */}
         <div className="px-6 md:px-8 pb-8">
-
-          <div
-            className="
-              border-t
-              border-[#1D2949]
-              pt-8
-            "
-          >
+          <div className="border-t border-[#1D2949] pt-8">
 
             <h2 className="text-2xl font-semibold text-white">
-              Work & Contributions
+              Work &amp; Contributions
             </h2>
 
-            <p
-              className="
-                mt-5
-                text-gray-300
-                leading-8
-                text-base
-                md:text-lg
-                max-w-5xl
-              "
+            <div
+              className="mt-5 text-gray-300 leading-8 text-base md:text-lg max-w-5xl whitespace-pre-line break-words"
             >
-              {scientist.workOn}
-            </p>
+              {scientist.description || scientist.shortDescription || "Detailed information about this scientist will be added soon."}
+            </div>
 
           </div>
-
         </div>
 
       </article>
-
     </div>
   );
 }

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -11,6 +12,9 @@ export default function ScientistCard({ scientist }) {
           src={scientist.image}
           alt={scientist.name}
           className="w-full h-full object-cover"
+          onError={(e) => {
+            e.currentTarget.style.display = "none";
+          }}
         />
       </div>
 
@@ -25,23 +29,15 @@ export default function ScientistCard({ scientist }) {
           Country: {scientist.country}
         </p>
 
+        {/* Short description shown on the card */}
         <p className="text-gray-300 mt-2 leading-relaxed">
-          {scientist.workOn}
+          {scientist.shortDescription || "Explore this scientist's life and contributions to astronomy."}
         </p>
 
         {/* Know More */}
         <Link
           to={`/scientists/${encodeURIComponent(scientist.name)}`}
-          className="
-            mt-auto
-            self-start
-            px-4 py-2
-            rounded-lg
-            bg-[#6142BF]
-            text-white
-            hover:bg-purple-500
-            transition
-          "
+          className="mt-auto self-start mt-5 px-4 py-2 rounded-lg bg-[#6142BF] text-white hover:bg-purple-500 transition"
         >
           Know More
         </Link>
