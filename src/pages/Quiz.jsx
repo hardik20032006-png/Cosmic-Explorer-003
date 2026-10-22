@@ -1,58 +1,88 @@
 
 import { useState } from "react";
+import QuizGame from "../components/components/QuizGame";
+
+const QUESTION_COUNTS = [5, 10, 15, 20, 30, 40, 50, 100];
+const DIFFICULTIES = [
+  "Very Easy",
+  "Easy",
+  "Medium",
+  "Hard",
+  "Very Hard",
+  "True Cosmos Lover",
+  "Increasing Difficulty",
+];
+const TIME_LIMITS = [10, 15, 20, 30, 45, 60, 90, 120];
 
 export default function Quiz() {
   const [questionCount, setQuestionCount] = useState("10");
   const [difficulty, setDifficulty] = useState("Medium");
-  const [timerEnabled, setTimerEnabled] = useState(false);
+  const [timerEnabled, setTimerEnabled] = useState(true);
   const [timeLimit, setTimeLimit] = useState("30");
   const [answerOptions, setAnswerOptions] = useState("4");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [saveWarning, setSaveWarning] = useState("");
 
-  const handleStartQuiz = (e) => {
-    e.preventDefault();
-
-    const settings = {
-      questionCount: Number(questionCount),
-      difficulty,
-      timerEnabled,
-      timeLimit: timerEnabled ? Number(timeLimit) : null,
-      answerOptions: Number(answerOptions),
-    };
-
-    // Save settings for the next stage of quiz development.
-    sessionStorage.setItem("cosmicQuizSettings", JSON.stringify(settings));
-
+  const settings = {
+    questionCount: Number(questionCount),
+    difficulty,
+    timerEnabled,
+    timeLimit: timerEnabled ? Number(timeLimit) : null,
+    answerOptions: Number(answerOptions),
   };
 
+  function handleStartQuiz(event) {
+    event.preventDefault();
+    setSaveWarning("");
+
+    try {
+      sessionStorage.setItem(
+        "cosmicQuizSettings",
+        JSON.stringify(settings)
+      );
+    } catch {
+      setSaveWarning(
+        "Your settings couldn't be saved in this browser, but you can still play."
+      );
+    }
+
+    setIsPlaying(true);
+  }
+
+  function handleExitQuiz() {
+    setIsPlaying(false);
+    setSaveWarning("");
+  }
+
   const selectClass =
-    "w-full rounded-lg border border-[#293951] bg-[#162236] px-4 py-3 text-white outline-none transition focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20";
+    "w-full rounded-xl border border-[#293951] bg-[#162236] px-4 py-3 text-white outline-none transition focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20";
+
+  if (isPlaying) {
+    return (
+      <QuizGame
+        settings={settings}
+        onExit={handleExitQuiz}
+      />
+    );
+  }
 
   return (
-    <main className="min-h-full bg-[#171717] px-4 pt-3 pb-6 text-white sm:px-8">
-      <div className="mx-auto max-w-3xl">
-        <div className="mb-4">
-          <p className="mb-2 text-sm font-semibold tracking-[0.2em] text-purple-400">
-            COSMIC EXPLORER
-          </p>
-
-          <h1 className="text-3xl font-bold sm:text-4xl">
-            Quiz Setup
+    <main className="min-h-full w-full bg-[#171717] px-4 pt-2 pb-6 text-white sm:px-6 lg:px-10">
+      <div className="mx-auto w-full max-w-3xl">
+        <header className="mb-5">
+          <h1 className="mt-2 text-3xl font-bold sm:text-4xl">
+            Cosmic Challenge
           </h1>
-
-          <p className="mt-2 text-sm text-slate-400 sm:text-base">
-            Customize your challenge and test your knowledge of the universe.
-          </p>
-        </div>
+        </header>
 
         <form
           onSubmit={handleStartQuiz}
-          className="space-y-6 rounded-2xl border border-[#5140a0] bg-[#0f1b2d] p-5 shadow-xl sm:p-8"
+          className="space-y-7 rounded-2xl border border-purple-500/40 bg-[#0f1b2d] p-5 shadow-xl sm:p-8 lg:p-10"
         >
-          {/* Number of questions */}
           <div>
             <label
               htmlFor="questionCount"
-              className="mb-2 block text-base font-semibold"
+              className="mb-2 block font-semibold sm:text-lg"
             >
               1. Number of Questions
             </label>
@@ -60,10 +90,10 @@ export default function Quiz() {
             <select
               id="questionCount"
               value={questionCount}
-              onChange={(e) => setQuestionCount(e.target.value)}
+              onChange={(event) => setQuestionCount(event.target.value)}
               className={selectClass}
             >
-              {[5, 10, 15, 20, 30, 40, 50, 100].map((number) => (
+              {QUESTION_COUNTS.map((number) => (
                 <option key={number} value={number}>
                   {number} Questions
                 </option>
@@ -71,11 +101,10 @@ export default function Quiz() {
             </select>
           </div>
 
-          {/* Difficulty */}
           <div>
             <label
               htmlFor="difficulty"
-              className="mb-2 block text-base font-semibold"
+              className="mb-2 block font-semibold sm:text-lg"
             >
               2. Difficulty Level
             </label>
@@ -83,41 +112,48 @@ export default function Quiz() {
             <select
               id="difficulty"
               value={difficulty}
-              onChange={(e) => setDifficulty(e.target.value)}
+              onChange={(event) => setDifficulty(event.target.value)}
               className={selectClass}
             >
-              <option>Very Easy</option>
-              <option>Easy</option>
-              <option>Medium</option>
-              <option>Hard</option>
-              <option>Very Hard</option>
-              <option>True Cosmos Lover</option>
-              <option>Increasing Difficulty</option>
+              {DIFFICULTIES.map((level) => (
+                <option key={level} value={level}>
+                  {level}
+                </option>
+              ))}
             </select>
+
+            {difficulty === "Increasing Difficulty" && (
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Questions progress from easier levels to more
+                challenging astronomy questions.
+              </p>
+            )}
           </div>
 
-          {/* Timer */}
           <div>
-            <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-[#293951] bg-[#162236] p-4">
+            <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-[#293951] bg-[#162236] p-4 sm:p-5">
               <input
                 type="checkbox"
                 checked={timerEnabled}
-                onChange={(e) => setTimerEnabled(e.target.checked)}
-                className="h-5 w-5 accent-purple-500"
+                onChange={(event) => setTimerEnabled(event.target.checked)}
+                className="h-5 w-5 shrink-0 accent-purple-500"
               />
 
               <span>
-                <span className="block font-semibold">Time Limit</span>
-                <span className="mt-1 block text-sm text-slate-400">
+                <span className="block font-semibold sm:text-lg">
+                  Time Limit
+                </span>
+
+                <span className="mt-1 block text-sm leading-6 text-slate-400">
                   {timerEnabled
                     ? "Choose the time allowed for each question."
-                    : "Untimed quiz — take as long as you need."}
+                    : "Timer disabled — take as long as you need."}
                 </span>
               </span>
             </label>
 
             {timerEnabled && (
-              <div className="mt-3">
+              <div className="mt-4">
                 <label
                   htmlFor="timeLimit"
                   className="mb-2 block text-sm text-slate-300"
@@ -128,24 +164,23 @@ export default function Quiz() {
                 <select
                   id="timeLimit"
                   value={timeLimit}
-                  onChange={(e) => setTimeLimit(e.target.value)}
+                  onChange={(event) => setTimeLimit(event.target.value)}
                   className={selectClass}
                 >
-                  <option value="15">10 seconds</option>
-                  <option value="15">15 seconds</option>
-                  <option value="30">30 seconds</option>
-                  <option value="30">45 seconds</option>
-                  <option value="60">60 seconds</option>
+                  {TIME_LIMITS.map((seconds) => (
+                    <option key={seconds} value={seconds}>
+                      {seconds} seconds
+                    </option>
+                  ))}
                 </select>
               </div>
             )}
           </div>
 
-          {/* Answer format */}
           <div>
             <label
               htmlFor="answerOptions"
-              className="mb-2 block text-base font-semibold"
+              className="mb-2 block font-semibold sm:text-lg"
             >
               3. Answer Options
             </label>
@@ -153,7 +188,7 @@ export default function Quiz() {
             <select
               id="answerOptions"
               value={answerOptions}
-              onChange={(e) => setAnswerOptions(e.target.value)}
+              onChange={(event) => setAnswerOptions(event.target.value)}
               className={selectClass}
             >
               <option value="2">2 Options</option>
@@ -161,19 +196,31 @@ export default function Quiz() {
             </select>
           </div>
 
-          {/* Summary */}
-          <div className="rounded-lg border border-purple-500/30 bg-purple-500/10 p-4 text-sm text-slate-300">
-            <p className="font-semibold text-purple-300">Your Quiz</p>
-            <p className="mt-2">
-              {questionCount} questions · {difficulty} ·{" "}
-              {timerEnabled ? `${timeLimit}s per question` : "No time limit"} ·{" "}
+          <section className="rounded-xl border border-purple-500/30 bg-purple-500/10 p-4 sm:p-5">
+            <h2 className="font-semibold text-purple-300">
+              Your Cosmic Challenge
+            </h2>
+
+            <p className="mt-2 leading-7 text-slate-300">
+              {questionCount} questions
+              {" · "}
+              {difficulty}
+              {" · "}
+              {timerEnabled ? `${timeLimit}s per question` : "No time limit"}
+              {" · "}
               {answerOptions} answer options
             </p>
-          </div>
+          </section>
+
+          {saveWarning && (
+            <p role="status" className="text-sm text-amber-300">
+              {saveWarning}
+            </p>
+          )}
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-[#6042c2] px-6 py-3 font-semibold text-white transition hover:bg-[#7656dc] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-[#0f1b2d]"
+            className="w-full rounded-xl bg-[#6042c2] px-6 py-4 font-bold text-white transition hover:bg-[#7656dc] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-[#0f1b2d]"
           >
             Start Quiz →
           </button>
