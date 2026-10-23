@@ -13,6 +13,7 @@ import SpaceMissionDetails from "./pages/SpaceMissionDetails";
 import Discoveries from "./pages/Discoveries";
 import DiscoveryDetails from "./pages/DiscoveryDetails";
 import Quiz from "./pages/Quiz";
+import Gallery from "./pages/Gallery";
 
 function App() {
   return (
@@ -89,10 +90,7 @@ function App() {
   element={<Facts />}
 />
 
-<Route
-    path="/Galary"
-    element={<div>Galary</div>}
-  />
+<Route path="/Galary" element={<Gallery />} />
 
   <Route path="/quiz" element={<Quiz />} />
 
