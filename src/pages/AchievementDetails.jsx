@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import achievements from "../achievementsData";
+import achievements from "../data/achievementsData.js";
 
 export default function AchievementDetails() {
   const { title } = useParams();

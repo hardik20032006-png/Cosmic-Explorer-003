@@ -1,6 +1,6 @@
 
 import { useParams, Link } from "react-router-dom";
-import discoveries from "../discoveriesData";
+import discoveries from "../data/discoveriesData.js";
 
 export default function DiscoveryDetails() {
   const { slug } = useParams();

@@ -1,6 +1,6 @@
 
 import { useParams, Link } from "react-router-dom";
-import spaceMissions from "../spaceMissionsData";
+import spaceMissions from "../data/spaceMissionsData.js";
 
 export default function SpaceMissionDetails() {
   const { slug } = useParams();

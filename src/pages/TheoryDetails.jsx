@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import theories from "../theoriesData";
+import theories from "../data/theoriesData.js";
 
 export default function TheoryDetails() {
   const { slug } = useParams();

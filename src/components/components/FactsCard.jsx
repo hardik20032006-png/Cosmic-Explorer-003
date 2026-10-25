@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import facts from "../../factsData";
+import facts from "../../data/factsData.js";
 
 export default function FactsCard() {
   const getRandomFact = () => {
