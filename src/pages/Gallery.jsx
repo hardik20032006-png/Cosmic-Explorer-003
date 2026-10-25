@@ -1,61 +1,13 @@
 
 import { useEffect, useState } from "react";
-
-const CLOUD_NAME = "hxmlwdvg";
-
-const FOLDERS = {
-  pc: "cosmic-wallpapers/pc-wallpaper",
-  mobile: "cosmic-wallpapers/phone-wallpaper",
-};
+import galleryImages from "../data/galleryImages";
 
 export default function Gallery() {
   const [device, setDevice] = useState("pc");
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [expandedImage, setExpandedImage] = useState(null);
-  const [error, setError] = useState("");
 
-  useEffect(() => {
-    let cancelled = false;
-
-    async function loadImages() {
-      setLoading(true);
-      setError("");
-      setImages([]);
-
-      try {
-        // Cloudinary's public delivery URLs don't provide a folder listing.
-        // We'll connect this page to a secure listing endpoint next.
-        const response = await fetch(
-          `/api/gallery?folder=${encodeURIComponent(FOLDERS[device])}`
-        );
-
-        if (!response.ok) {
-          throw new Error("Gallery image service is not connected yet.");
-        }
-
-        const data = await response.json();
-
-        if (!cancelled) {
-          setImages(Array.isArray(data.images) ? data.images : []);
-        }
-      } catch (err) {
-        if (!cancelled) {
-          setError(
-            err.message || "Couldn't load images. Please try again."
-          );
-        }
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    }
-
-    loadImages();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [device]);
+  // Read images directly from our local data file.
+  const images = galleryImages[device] || [];
 
   useEffect(() => {
     function handleKeyDown(event) {
@@ -66,16 +18,26 @@ export default function Gallery() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  function downloadImage(image) {
-    const link = document.createElement("a");
-    link.href = image.downloadUrl || image.url;
-    link.download = image.filename || "cosmic-wallpaper.jpg";
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  }
+ 
+function downloadImage(image) {
+  const imageUrl = image.downloadUrl || image.url;
+
+  // Request the image as a downloadable attachment from Cloudinary.
+  const downloadUrl = imageUrl.replace(
+    "/image/upload/",
+    "/image/upload/fl_attachment/"
+  );
+
+  const link = document.createElement("a");
+  link.href = downloadUrl;
+  link.download = image.filename || "cosmic-wallpaper.jpg";
+  link.rel = "noopener noreferrer";
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
 
   return (
     <main className="min-h-full bg-[#171717] px-4 pt-5 pb-6 text-white sm:px-6 lg:px-8">
@@ -121,26 +83,13 @@ export default function Gallery() {
           </button>
         </div>
 
-        {loading && (
+        {images.length === 0 && (
           <p className="py-12 text-center text-slate-400">
-            Loading cosmic images...
+            No images added to this collection yet.
           </p>
         )}
 
-        {!loading && error && (
-          <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-5 text-amber-200">
-            <p className="font-semibold">Gallery connection needed</p>
-            <p className="mt-2 text-sm">{error}</p>
-          </div>
-        )}
-
-        {!loading && !error && images.length === 0 && (
-          <p className="py-12 text-center text-slate-400">
-            No images found in this collection yet.
-          </p>
-        )}
-
-        {!loading && !error && images.length > 0 && (
+        {images.length > 0 && (
           <div
             className={`grid gap-5 ${
               device === "pc"
@@ -151,7 +100,7 @@ export default function Gallery() {
             {images.map((image) => (
               <article
                 key={image.id || image.url}
-                className="overflow-hidden rounded-2xl border border-purple-500/30 bg-[#101b2d] p-3"
+                className="group overflow-hidden rounded-2xl border border-white/10 bg-[#1b1b1b] p-2 transition duration-300 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-950/20"
               >
                 <button
                   type="button"
